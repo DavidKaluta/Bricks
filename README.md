@@ -3,4 +3,4 @@ The bricks game from Leonid's class
 Built using IntelliJ
 
 ## WARNING
-Do **NOT** clone master!
+master is **VERY** unstable
