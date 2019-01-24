@@ -1,4 +1,5 @@
 *.iml
+*.un~
 .gradle
 /local.properties
 /.idea/libraries
@@ -85,3 +86,4 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
