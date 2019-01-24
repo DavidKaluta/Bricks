@@ -9,6 +9,7 @@ import android.view.View;
 public class GameView extends View {
 
     private Brick[] bricks;
+    private Killer killer;
 
     public GameView(Context context) {
         super(context);
@@ -18,6 +19,7 @@ public class GameView extends View {
             bricks[i] = new Brick(x, 200, this);
             x+=200;
         }
+        killer = new Killer(150, 500, this);
     }
 
     protected void onDraw(Canvas canvas) {
@@ -25,6 +27,7 @@ public class GameView extends View {
         for (int i = 0; i < bricks.length; i++) {
             bricks[i].draw(canvas);
         }
+        killer.draw(canvas);
         invalidate();
     }
 

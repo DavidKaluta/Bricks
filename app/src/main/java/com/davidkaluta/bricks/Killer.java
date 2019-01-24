@@ -4,16 +4,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 
-public class Brick {
+public class Killer extends Brick {
     private Bitmap bmp;
-    protected float x;
-    protected float y;
-    public Brick(float x, float y, GameView gameView) {
-        bmp = BitmapFactory.decodeResource(gameView.getResources(), R.drawable.brick);
-        this.x = x;
-        this.y = y;
+    public Killer(float x, float y, GameView gameView) {
+        super(x, y, gameView);
+        bmp = BitmapFactory.decodeResource(gameView.getResources(), R.drawable.ic_launcher_round);
     }
-
     public void draw(Canvas canvas) {
         canvas.drawBitmap(bmp, x, y, null);
     }
