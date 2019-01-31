@@ -3,5 +3,5 @@ The bricks game from Leonid's class
 
 Built using IntelliJ
 
-This is branch v1
+This is version 1.0
 
