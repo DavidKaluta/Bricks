@@ -1,6 +1,6 @@
 package com.davidkaluta.bricks;
 
-import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -10,14 +10,12 @@ import android.view.WindowManager;
 
 public class Killer extends Brick implements Runnable {
     private Bitmap bmp;
-    private Context context;
     private Thread thread;
     private float dx;
     private float dy;
 
     public Killer(float x, float y, float dx, float dy, GameView gameView) {
         super(x, y, gameView);
-        this.context = context;
         bmp = BitmapFactory.decodeResource(gameView.getResources(), R.drawable.ic_launcher_round);
         this.dx = dx;
         this.dy = dy;
@@ -32,6 +30,12 @@ public class Killer extends Brick implements Runnable {
     @Override
     public void run() {
         while (true) {
+            int deviceWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+            int deviceHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
+            if(x <= 0 || x >= deviceWidth)
+                dx = -dx;
+            if(y <= 0 || y >= deviceHeight)
+                dy = -dy;
             x += dx;
             y += dy;
             try {
