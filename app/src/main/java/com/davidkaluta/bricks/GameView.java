@@ -10,6 +10,7 @@ public class GameView extends View {
 
     private Brick[] bricks;
     private Killer killer;
+    private Killer killerOther;
 
     public GameView(Context context) {
         super(context);
@@ -19,7 +20,8 @@ public class GameView extends View {
             bricks[i] = new Brick(x, 200, this);
             x+=200;
         }
-        killer = new Killer(150, 500, this);
+        killer = new Killer(150, 500, 5, 5, this);
+        killerOther = new Killer(550, 500, -5, -5, this);
     }
 
     protected void onDraw(Canvas canvas) {
@@ -28,6 +30,7 @@ public class GameView extends View {
             bricks[i].draw(canvas);
         }
         killer.draw(canvas);
+        killerOther.draw(canvas);
         invalidate();
     }
 
