@@ -23,6 +23,14 @@ public class Killer extends Brick implements Runnable {
         thread.start();
     }
 
+    public void setDx(float dx) {
+        this.dx = dx;
+    }
+
+    public void setDy(float dy) {
+        this.dy = dy;
+    }
+
     public void draw(Canvas canvas) {
         canvas.drawBitmap(bmp, x, y, null);
     }
@@ -32,9 +40,11 @@ public class Killer extends Brick implements Runnable {
         while (true) {
             int deviceWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
             int deviceHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
-            if(x <= 0 || x >= deviceWidth)
+            int killerWidth = bmp.getWidth();
+            int killerHeight = bmp.getHeight();
+            if(x <= 0 || x >= deviceWidth - killerWidth)
                 dx = -dx;
-            if(y <= 0 || y >= deviceHeight)
+            if(y <= 0 || y >= deviceHeight - killerHeight)
                 dy = -dy;
             x += dx;
             y += dy;
