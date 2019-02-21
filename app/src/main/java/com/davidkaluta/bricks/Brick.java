@@ -11,22 +11,24 @@ public class Brick {
     protected float y;
     protected float width;
     protected float height;
-    protected Rect rect;
     public Brick(float x, float y, GameView gameView) {
         bmp = BitmapFactory.decodeResource(gameView.getResources(), R.drawable.brick);
         width = bmp.getWidth();
         height = bmp.getHeight();
         this.x = x;
         this.y = y;
-        rect = new Rect((int) x , (int) y, (int) (x+width),  (int) (x+height));
     }
 
-    public Rect getRect() {
-        return rect;
-    }
 
     public float getWidth() {
         return width;
+    }
+
+    public float getX() {
+        return x;
+    }
+    public float getY() {
+        return y;
     }
 
     public float getHeight() {

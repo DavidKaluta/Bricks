@@ -24,7 +24,6 @@ public class Killer extends Brick implements Runnable {
         height = bmp.getHeight();
         this.dx = dx;
         this.dy = dy;
-        rect = new Rect((int) x , (int) y, (int) (x+width),  (int) (x+height));
         thread = new Thread(this, "killerThread");
         thread.start();
     }
@@ -52,18 +51,12 @@ public class Killer extends Brick implements Runnable {
             if(y <= 0 || y >= deviceHeight - height)
                 dy = -dy;
             for (Brick brick: bricks) {
-                if(rect.intersect(brick.rect)) {
-                    if(x+width > brick.x) {
-                        dx = -dx;
-                    } else if(x < brick.y + brick.width) {
-                        dx = -dx;
-                    } else if(y + height > brick.y) {
-                        dy = -dy;
-                    } else {
-                        dy = -dy;
-                    }
-                    dx = -dx;
-                    dy = -dy;
+                if(x + width > brick.x
+                        && x < brick.x + brick.width
+                        && y + height > brick.y
+                        && y < brick.y + brick.height) {
+                    dx = 0;
+                    dy = 0;
                 }
             }
             x += dx;
