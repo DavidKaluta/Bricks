@@ -4,10 +4,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.util.DisplayMetrics;
-import android.view.Display;
-import android.view.WindowManager;
 
 public class Killer extends Brick implements Runnable {
     private Bitmap bmp;

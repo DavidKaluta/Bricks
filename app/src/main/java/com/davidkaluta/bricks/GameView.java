@@ -8,8 +8,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.View;
 
-import java.util.ArrayList;
-
 public class GameView extends View {
 
     private Brick brick;
