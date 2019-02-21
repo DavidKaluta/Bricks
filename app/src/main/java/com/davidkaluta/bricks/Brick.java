@@ -33,6 +33,10 @@ public class Brick {
         return height;
     }
 
+    public void setX(float x) {this.x = x;}
+
+    public void setY(float y) {this.y = y;}
+
     public void draw(Canvas canvas) {
         canvas.drawBitmap(bmp, x, y, null);
     }
