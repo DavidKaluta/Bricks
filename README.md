@@ -3,7 +3,5 @@ The bricks game from Leonid's class
 
 Built using IntelliJ
 
-This is the most current branch
+This is version 3.0
 
-## WARNING
-master is **VERY** unstable
