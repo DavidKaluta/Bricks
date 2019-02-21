@@ -22,6 +22,10 @@ public class GameView extends View {
         killer = new Killer(150, 500, 0, 0, this);
     }
 
+    public Brick[] getBricks() {
+        return bricks;
+    }
+
     public Killer getKiller() {
         return killer;
     }
@@ -38,5 +42,6 @@ public class GameView extends View {
         killer.draw(canvas);
         invalidate();
     }
+
 
 }
