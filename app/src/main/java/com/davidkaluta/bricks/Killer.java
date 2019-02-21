@@ -43,20 +43,20 @@ public class Killer extends Brick implements Runnable {
     @Override
     public void run() {
         while (true) {
-            Brick[] bricks = gv.getBricks();
             int deviceWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
             int deviceHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
-            if(x <= 0 || x >= deviceWidth - width)
+            if (x <= 0 || x >= deviceWidth - width)
                 dx = -dx;
-            if(y <= 0 || y >= deviceHeight - height)
+            if (y <= 0 || y >= deviceHeight - height)
                 dy = -dy;
-            for (Brick brick: bricks) {
-                if(x + width > brick.x
-                        && x < brick.x + brick.width
-                        && y + height > brick.y
-                        && y < brick.y + brick.height) {
+            if(gv.getBrick() != null) {
+                if (x + width > gv.getBrick().x
+                        && x < gv.getBrick().x + gv.getBrick().width
+                        && y + height > gv.getBrick().y
+                        && y < gv.getBrick().y + gv.getBrick().height) {
                     dx = 0;
                     dy = 0;
+                    gv.killBrick();
                 }
             }
             x += dx;

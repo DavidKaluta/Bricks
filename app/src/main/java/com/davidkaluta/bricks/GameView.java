@@ -6,24 +6,29 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.View;
 
+import java.util.ArrayList;
+
 public class GameView extends View {
 
-    private Brick[] bricks;
+    private Brick brick;
     private Killer killer;
 
     public GameView(Context context) {
         super(context);
-        int x = 100;
-        bricks = new Brick[3];
-        for (int i = 0; i < bricks.length; i++) {
-            bricks[i] = new Brick(x, 200, this);
-            x+=200;
-        }
+        brick = new Brick(100,200,this);
         killer = new Killer(150, 500, 0, 0, this);
     }
 
-    public Brick[] getBricks() {
-        return bricks;
+    public Brick getBrick() {
+        return brick;
+    }
+
+    public void setBrick(Brick brick){
+        this.brick = brick;
+    }
+
+    public void killBrick() {
+        brick = null;
     }
 
     public Killer getKiller() {
@@ -36,9 +41,8 @@ public class GameView extends View {
 
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        for (int i = 0; i < bricks.length; i++) {
-            bricks[i].draw(canvas);
-        }
+        if(brick != null)
+            brick.draw(canvas);
         killer.draw(canvas);
         invalidate();
     }
