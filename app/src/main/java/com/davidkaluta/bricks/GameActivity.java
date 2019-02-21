@@ -55,6 +55,7 @@ public class GameActivity extends AppCompatActivity {
                 float yMove = event.getY();
                 gameView.getKiller().setX(xMove);
                 gameView.getKiller().setY(yMove);
+                return true;
             default:
                 return super.onTouchEvent(event);
         }
