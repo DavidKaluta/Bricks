@@ -57,6 +57,7 @@ public class Killer extends Brick implements Runnable {
                     dx = 0;
                     dy = 0;
                     gv.killBrick();
+                    gv.createBrick();
                 }
             }
             x += dx;

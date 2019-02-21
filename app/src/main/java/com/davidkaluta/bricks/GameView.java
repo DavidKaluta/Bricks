@@ -1,7 +1,9 @@
 package com.davidkaluta.bricks;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import java.util.Random;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.View;
@@ -33,6 +35,15 @@ public class GameView extends View {
 
     public Killer getKiller() {
         return killer;
+    }
+
+    public void createBrick() {
+        Random random = new Random();
+        Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.brick);
+        float deviceWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+        float deviceHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
+        brick = new Brick(random.nextInt((int) (deviceWidth - bmp.getWidth() - 10)) + 5,
+                random.nextInt((int) (deviceHeight - bmp.getHeight() - 10)) + 5, this);
     }
 
     public void setKiller(Killer killer) {
