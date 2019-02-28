@@ -2,6 +2,8 @@ package com.davidkaluta.bricks;
 
 import android.content.Context;
 import java.util.ArrayList;
+
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.view.View;
 
@@ -12,7 +14,7 @@ public class GameView extends View {
 
     public GameView(Context context) {
         super(context);
-        killer = new Killer(300, 700, 0, 0, this);
+        spawnKiller();
         bricks = new ArrayList<>();
         bricks.add(new Brick(200,100,this));
         bricks.add(new Brick(400,100,this));
@@ -30,10 +32,13 @@ public class GameView extends View {
         this.bricks = bricks;
     }
 
-    public void killBrick(Brick brick) {
-        brick = null;
+    public void spawnKiller(){
+        int deviceWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+        int deviceHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
+        killer = null;
+        killer = new Killer((float) deviceWidth/2, (float) (deviceHeight)/4*3, 0, 0, this);
     }
-
+    
     public Killer getKiller() {
         return killer;
     }
@@ -48,7 +53,8 @@ public class GameView extends View {
             if(brick != null)
                 brick.draw(canvas);
         }
-        killer.draw(canvas);
+        if(killer != null)
+            killer.draw(canvas);
         invalidate();
     }
 

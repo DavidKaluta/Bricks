@@ -56,6 +56,7 @@ public class Killer extends Brick implements Runnable {
                             && y < brick.y + brick.height) {
                         dx = 0;
                         dy = 0;
+                        gv.spawnKiller();
                         bricks.remove(brick);
                         break;
                     }
