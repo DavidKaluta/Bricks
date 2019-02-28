@@ -23,7 +23,7 @@ public class GameView extends View {
         bricks.add(new Brick(400,300,this));
         bricks.add(new Brick(600,300,this));
     }
-
+    
     public ArrayList<Brick> getBricks() {
         return bricks;
     }
