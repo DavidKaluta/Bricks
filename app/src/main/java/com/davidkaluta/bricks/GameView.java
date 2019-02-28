@@ -44,8 +44,7 @@ public class GameView extends View {
 
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        for (Brick brick:
-             bricks) {
+        for (Brick brick: bricks) {
             if(brick != null)
                 brick.draw(canvas);
         }
