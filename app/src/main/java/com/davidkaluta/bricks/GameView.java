@@ -38,7 +38,7 @@ public class GameView extends View {
         killer = null;
         killer = new Killer((float) deviceWidth/2, (float) (deviceHeight)/4*3, 0, 0, this);
     }
-    
+
     public Killer getKiller() {
         return killer;
     }
