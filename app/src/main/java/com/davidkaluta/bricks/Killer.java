@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 
+import java.util.ArrayList;
+
 public class Killer extends Brick implements Runnable {
     private Bitmap bmp;
     private Thread thread;
@@ -45,17 +47,21 @@ public class Killer extends Brick implements Runnable {
                 dx = -dx;
             if (y <= 0 || y >= deviceHeight - height)
                 dy = -dy;
-            if(gv.getBrick() != null) {
-                if (x + width > gv.getBrick().x
-                        && x < gv.getBrick().x + gv.getBrick().width
-                        && y + height > gv.getBrick().y
-                        && y < gv.getBrick().y + gv.getBrick().height) {
-                    dx = 0;
-                    dy = 0;
-                    gv.killBrick();
-                    gv.createBrick();
+            ArrayList<Brick> bricks = gv.getBricks();
+            for (Brick brick: bricks) {
+                if(brick != null) {
+                    if (x + width >brick.x
+                            && x < brick.x + brick.width
+                            && y + height > brick.y
+                            && y < brick.y + brick.height) {
+                        dx = 0;
+                        dy = 0;
+                        bricks.remove(brick);
+                        break;
+                    }
                 }
             }
+            gv.setBricks(bricks);
             x += dx;
             y += dy;
             try {

@@ -1,47 +1,41 @@
 package com.davidkaluta.bricks;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import java.util.Random;
-import android.graphics.BitmapFactory;
+import java.util.ArrayList;
 import android.graphics.Canvas;
 import android.view.View;
 
 public class GameView extends View {
 
-    private Brick brick;
     private Killer killer;
+    private ArrayList<Brick> bricks;
 
     public GameView(Context context) {
         super(context);
-        brick = new Brick(100,200,this);
-        killer = new Killer(150, 500, 0, 0, this);
+        killer = new Killer(300, 700, 0, 0, this);
+        bricks = new ArrayList<>();
+        bricks.add(new Brick(200,100,this));
+        bricks.add(new Brick(400,100,this));
+        bricks.add(new Brick(600,100,this));
+        bricks.add(new Brick(200,300,this));
+        bricks.add(new Brick(400,300,this));
+        bricks.add(new Brick(600,300,this));
     }
 
-    public Brick getBrick() {
-        return brick;
+    public ArrayList<Brick> getBricks() {
+        return bricks;
     }
 
-    public void setBrick(Brick brick){
-        this.brick = brick;
+    public void setBricks(ArrayList<Brick> bricks){
+        this.bricks = bricks;
     }
 
-    public void killBrick() {
+    public void killBrick(Brick brick) {
         brick = null;
     }
 
     public Killer getKiller() {
         return killer;
-    }
-
-    public void createBrick() {
-        Random random = new Random();
-        Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.brick);
-        float deviceWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
-        float deviceHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
-        brick = new Brick(random.nextInt((int) (deviceWidth - bmp.getWidth() - 10)) + 5,
-                random.nextInt((int) (deviceHeight - bmp.getHeight() - 10)) + 5, this);
     }
 
     public void setKiller(Killer killer) {
@@ -50,8 +44,11 @@ public class GameView extends View {
 
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if(brick != null)
-            brick.draw(canvas);
+        for (Brick brick:
+             bricks) {
+            if(brick != null)
+                brick.draw(canvas);
+        }
         killer.draw(canvas);
         invalidate();
     }
