@@ -4,7 +4,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-
 import java.util.ArrayList;
 
 public class Killer extends Brick implements Runnable {
