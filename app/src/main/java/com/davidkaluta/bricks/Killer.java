@@ -15,7 +15,7 @@ public class Killer extends Brick implements Runnable {
 
     public Killer(float x, float y, float dx, float dy, GameView gameView) {
         super(x, y, gameView);
-        bmp = BitmapFactory.decodeResource(gameView.getResources(), R.drawable.ic_launcher_round);
+        bmp = BitmapFactory.decodeResource(gameView.getResources(), R.drawable.ninjastar);
         gv = gameView;
         width = bmp.getWidth();
         height = bmp.getHeight();

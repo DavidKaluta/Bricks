@@ -2,8 +2,9 @@ package com.davidkaluta.bricks;
 
 import android.content.Context;
 import java.util.ArrayList;
-
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.View;
 
@@ -11,9 +12,13 @@ public class GameView extends View {
 
     private Killer killer;
     private ArrayList<Brick> bricks;
+    private Bitmap bg;
 
     public GameView(Context context) {
         super(context);
+        int deviceWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+        int deviceHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
+        bg = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.background), deviceWidth, deviceHeight, true);
         spawnKiller();
         bricks = new ArrayList<>();
         bricks.add(new Brick(200,100,this));
@@ -49,6 +54,7 @@ public class GameView extends View {
 
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        canvas.drawBitmap(bg, 0,0,null);
         for (Brick brick: bricks) {
             if(brick != null)
                 brick.draw(canvas);
