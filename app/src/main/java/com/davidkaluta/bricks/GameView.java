@@ -15,7 +15,6 @@ public class GameView extends View {
     private Killer killer;
     private ArrayList<Brick> bricks;
     private Bitmap bg;
-    private int score;
 
     public GameView(Context context) {
         super(context);
