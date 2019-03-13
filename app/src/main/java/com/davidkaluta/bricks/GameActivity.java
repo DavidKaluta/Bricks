@@ -48,8 +48,8 @@ public class GameActivity extends AppCompatActivity {
             case (MotionEvent.ACTION_UP):
                 float xUp = event.getX();
                 float yUp = event.getY();
-                gameView.getKiller().setDx((xUp - xDown) / 5);
-                gameView.getKiller().setDy((yUp - yDown) / 5);
+                gameView.getKiller().setDx((xUp - xDown) / 20);
+                gameView.getKiller().setDy((yUp - yDown) / 20);
                 return true;
             default:
                 return super.onTouchEvent(event);

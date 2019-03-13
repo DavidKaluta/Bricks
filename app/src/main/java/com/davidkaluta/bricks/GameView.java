@@ -2,6 +2,8 @@ package com.davidkaluta.bricks;
 
 import android.content.Context;
 import java.util.ArrayList;
+import java.util.Random;
+
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,12 +23,28 @@ public class GameView extends View {
         bg = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.background), deviceWidth, deviceHeight, true);
         spawnKiller();
         bricks = new ArrayList<>();
-        bricks.add(new Brick(200,100,this));
-        bricks.add(new Brick(400,100,this));
-        bricks.add(new Brick(600,100,this));
-        bricks.add(new Brick(200,300,this));
-        bricks.add(new Brick(400,300,this));
-        bricks.add(new Brick(600,300,this));
+        //spawnBricks(bricks);
+    }
+
+    public void spawnBricks(ArrayList<Brick> bricks) {
+        if(bricks.isEmpty()) {
+            Random random = new Random();
+            Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.brick);
+            float deviceWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+            float deviceHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
+            bricks.add(new Brick(random.nextInt((int) (deviceWidth - Brick.getWidth() - 10)) + 5,
+                    random.nextInt((int) (deviceHeight - Brick.getHeight() - 10)) + 5, this));
+            bricks.add(new Brick(random.nextInt((int) (deviceWidth - Brick.getWidth() - 10)) + 5,
+                    random.nextInt((int) (deviceHeight - Brick.getHeight() - 10)) + 5, this));
+            bricks.add(new Brick(random.nextInt((int) (deviceWidth - Brick.getWidth() - 10)) + 5,
+                    random.nextInt((int) (deviceHeight - Brick.getHeight() - 10)) + 5, this));
+            bricks.add(new Brick(random.nextInt((int) (deviceWidth - Brick.getWidth() - 10)) + 5,
+                    random.nextInt((int) (deviceHeight - Brick.getHeight() - 10)) + 5, this));
+            bricks.add(new Brick(random.nextInt((int) (deviceWidth - Brick.getWidth() - 10)) + 5,
+                    random.nextInt((int) (deviceHeight - Brick.getHeight() - 10)) + 5, this));
+            bricks.add(new Brick(random.nextInt((int) (deviceWidth - Brick.getWidth() - 10)) + 5,
+                    random.nextInt((int) (deviceHeight - Brick.getHeight() - 10)) + 5, this));
+        }
     }
     
     public ArrayList<Brick> getBricks() {

@@ -8,8 +8,8 @@ public class Brick {
     private Bitmap bmp;
     protected float x;
     protected float y;
-    protected float width;
-    protected float height;
+    protected static float width;
+    protected static float height;
     public Brick(float x, float y, GameView gameView) {
         bmp = BitmapFactory.decodeResource(gameView.getResources(), R.drawable.brick);
         width = bmp.getWidth();
@@ -19,18 +19,19 @@ public class Brick {
     }
 
 
-    public float getWidth() {
+    public static float getWidth() {
         return width;
     }
 
     public float getX() {
         return x;
     }
+
     public float getY() {
         return y;
     }
 
-    public float getHeight() {
+    public static float getHeight() {
         return height;
     }
 
