@@ -11,8 +11,9 @@ public class Killer extends Brick implements Runnable {
     private Thread thread;
     private float dx;
     private float dy;
+    private float ddx;
+    private float ddy;
     private GameView gv;
-    private int killedBricks;
 
     public Killer(float x, float y, float dx, float dy, GameView gameView) {
         super(x, y, gameView);
@@ -23,7 +24,6 @@ public class Killer extends Brick implements Runnable {
         this.dx = dx;
         this.dy = dy;
         thread = new Thread(this, "killerThread");
-        killedBricks = 0;
         thread.start();
     }
 
@@ -46,6 +46,10 @@ public class Killer extends Brick implements Runnable {
             int deviceHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
             if (x <= 0 || x >= deviceWidth - width)
                 dx = -dx;
+            if(x < 0)
+                x = 0;
+            if(x > deviceWidth - width)
+                x = deviceWidth-width;
             if (y <= 0 || y >= deviceHeight - height)
                 dy = -dy;
             ArrayList<Brick> bricks = gv.getBricks();
@@ -56,20 +60,27 @@ public class Killer extends Brick implements Runnable {
                             && y + height > brick.y
                             && y < brick.y + brick.height) {
                         bricks.remove(brick);
-                        killedBricks++;
                         break;
                     }
                 }
             }
+            ddy = Math.abs(dy*(float) (0.003));
+            ddx = Math.abs(dx*(float) (0.003));
+            if(Math.sqrt(Math.pow(ddy,2) + Math.pow(ddx, 2)) <= 0.00001) {
+                ddy = 0;
+                ddx = 0;
+                dy = 0;
+                dx = 0;
+            }
             if(dx > 0)
-                dx -= 0.1;
+                dx -= ddx;
             else if(dx < 0)
-                dx += 0.1;
+                dx += ddx;
             else {}
             if(dy > 0)
-                dy -= 0.1;
+                dy -= ddy;
             else if(dy < 0)
-                dy += 0.1;
+                dy += ddy;
             else {}
             x += dx;
             y += dy;
@@ -77,7 +88,7 @@ public class Killer extends Brick implements Runnable {
                 gv.spawnBricks(bricks);
             gv.setBricks(bricks);
             try {
-                Thread.sleep(15);
+                Thread.sleep(16 + 2/3);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
