@@ -5,10 +5,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
+import android.graphics.*;
 import android.view.View;
+import android.widget.TextView;
 
 public class GameView extends View {
 
@@ -23,7 +22,6 @@ public class GameView extends View {
         bg = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.background), deviceWidth, deviceHeight, true);
         spawnKiller();
         bricks = new ArrayList<>();
-        //spawnBricks(bricks);
     }
 
     public void spawnBricks(ArrayList<Brick> bricks) {
@@ -32,21 +30,13 @@ public class GameView extends View {
             Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.brick);
             float deviceWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
             float deviceHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
-            bricks.add(new Brick(random.nextInt((int) (deviceWidth - Brick.getWidth() - 10)) + 5,
-                    random.nextInt((int) (deviceHeight - Brick.getHeight() - 10)) + 5, this));
-            bricks.add(new Brick(random.nextInt((int) (deviceWidth - Brick.getWidth() - 10)) + 5,
-                    random.nextInt((int) (deviceHeight - Brick.getHeight() - 10)) + 5, this));
-            bricks.add(new Brick(random.nextInt((int) (deviceWidth - Brick.getWidth() - 10)) + 5,
-                    random.nextInt((int) (deviceHeight - Brick.getHeight() - 10)) + 5, this));
-            bricks.add(new Brick(random.nextInt((int) (deviceWidth - Brick.getWidth() - 10)) + 5,
-                    random.nextInt((int) (deviceHeight - Brick.getHeight() - 10)) + 5, this));
-            bricks.add(new Brick(random.nextInt((int) (deviceWidth - Brick.getWidth() - 10)) + 5,
-                    random.nextInt((int) (deviceHeight - Brick.getHeight() - 10)) + 5, this));
-            bricks.add(new Brick(random.nextInt((int) (deviceWidth - Brick.getWidth() - 10)) + 5,
-                    random.nextInt((int) (deviceHeight - Brick.getHeight() - 10)) + 5, this));
+            for(int i = 0; i < 6; i++) {
+                bricks.add(new Brick(random.nextInt((int) (deviceWidth - Brick.getWidth() - 10)) + 5,
+                        random.nextInt((int) (deviceHeight - Brick.getHeight() - 10)) + 5, this));
+            }
         }
     }
-    
+
     public ArrayList<Brick> getBricks() {
         return bricks;
     }
@@ -72,15 +62,18 @@ public class GameView extends View {
 
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawBitmap(bg, 0,0,null);
-        for (Brick brick: bricks) {
-            if(brick != null)
+        canvas.drawBitmap(bg, 0, 0, null);
+        for (Brick brick : bricks) {
+            if (brick != null)
                 brick.draw(canvas);
         }
-        if(killer != null)
+        if (killer != null)
             killer.draw(canvas);
+        Paint paint = new Paint();
+        paint.setTextSize(50);
+        paint.setColor(Color.WHITE);
+        canvas.drawText(getContext().getString(R.string.score_textview, killer.getScore()), 50, 100, paint);
+        canvas.drawText(getContext().getString(R.string.high_score_textview, Saver.getHighScore(getContext())), 50, 150, paint);
         invalidate();
     }
-
-
 }

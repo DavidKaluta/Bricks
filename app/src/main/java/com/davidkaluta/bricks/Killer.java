@@ -13,6 +13,7 @@ public class Killer extends Brick implements Runnable {
     private float dy;
     private float ddx;
     private float ddy;
+    private int score;
     private GameView gv;
 
     public Killer(float x, float y, float dx, float dy, GameView gameView) {
@@ -23,6 +24,7 @@ public class Killer extends Brick implements Runnable {
         height = bmp.getHeight();
         this.dx = dx;
         this.dy = dy;
+        score = 0;
         thread = new Thread(this, "killerThread");
         thread.start();
     }
@@ -33,6 +35,10 @@ public class Killer extends Brick implements Runnable {
 
     public void setDy(float dy) {
         this.dy = dy;
+    }
+
+    public int getScore() {
+        return score;
     }
 
     public void draw(Canvas canvas) {
@@ -60,6 +66,9 @@ public class Killer extends Brick implements Runnable {
                             && y + height > brick.y
                             && y < brick.y + brick.height) {
                         bricks.remove(brick);
+                        score++;
+                        if(Saver.getHighScore(gv.getContext()) < score)
+                            Saver.setHighScore(gv.getContext(), score);
                         break;
                     }
                 }
@@ -88,7 +97,7 @@ public class Killer extends Brick implements Runnable {
                 gv.spawnBricks(bricks);
             gv.setBricks(bricks);
             try {
-                Thread.sleep(16 + 2/3);
+                Thread.sleep(16);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
