@@ -3,4 +3,4 @@ The bricks game from Leonid's class
 
 Built using IntelliJ
 
-This is version 4.0
+This is the version 4.0
