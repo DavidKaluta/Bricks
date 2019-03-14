@@ -50,7 +50,8 @@ public class GameView extends View {
                 bricks.add(new Brick(random.nextInt((int)
                         (deviceWidth - Brick.getWidth() - 10)) + 5,
                         random.nextInt((int)
-                                (deviceHeight - Brick.getHeight() - 10)) + 5, this));
+                                (deviceHeight - Brick.getHeight() - 10)) + 5,
+                                 this));
             }
         }
     }
