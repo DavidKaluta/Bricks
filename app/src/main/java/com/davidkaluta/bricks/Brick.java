@@ -11,7 +11,8 @@ public class Brick {
     protected static float width;
     protected static float height;
     public Brick(float x, float y, GameView gameView) {
-        bmp = BitmapFactory.decodeResource(gameView.getResources(), R.drawable.brick);
+        bmp = BitmapFactory.decodeResource(gameView.getResources(),
+         R.drawable.brick);
         width = bmp.getWidth();
         height = bmp.getHeight();
         this.x = x;

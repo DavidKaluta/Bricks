@@ -18,7 +18,8 @@ public class Killer extends Brick implements Runnable {
 
     public Killer(float x, float y, float dx, float dy, GameView gameView) {
         super(x, y, gameView);
-        bmp = BitmapFactory.decodeResource(gameView.getResources(), R.drawable.ninjastar);
+        bmp = BitmapFactory.decodeResource(gameView.getResources(),
+         R.drawable.ninjastar);
         gv = gameView;
         width = bmp.getWidth();
         height = bmp.getHeight();
@@ -48,8 +49,10 @@ public class Killer extends Brick implements Runnable {
     @Override
     public void run() {
         while (true) {
-            int deviceWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
-            int deviceHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
+            int deviceWidth = Resources.getSystem().getDisplayMetrics()
+            .widthPixels;
+            int deviceHeight = Resources.getSystem().getDisplayMetrics()
+            .heightPixels;
             if (x <= 0 || x >= deviceWidth - width)
                 dx = -dx;
             if(x < 0)
