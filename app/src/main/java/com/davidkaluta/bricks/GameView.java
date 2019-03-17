@@ -17,6 +17,7 @@ public class GameView extends View {
 
     private Killer killer;
     private ArrayList<Brick> bricks;
+    private ParticleManager pm;
     private Bitmap bg;
     private int secs;
     private int mins;
@@ -32,6 +33,7 @@ public class GameView extends View {
                 deviceWidth, deviceHeight, true);
         spawnKiller();
         bricks = new ArrayList<>();
+        pm = new ParticleManager(this);
         TimerTask task = new TimeHelper();
         timer = new Timer();
         timer.schedule(task, 1000, 1000);
@@ -54,6 +56,14 @@ public class GameView extends View {
                                  this));
             }
         }
+    }
+
+    public ParticleManager getPM() {
+        return pm;
+    }
+
+    public void setPM(ParticleManager pm) {
+        this.pm = pm;
     }
 
     public ArrayList<Brick> getBricks() {
@@ -83,6 +93,7 @@ public class GameView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawBitmap(bg, 0, 0, null);
+        pm.draw(canvas);
         for (Brick brick : bricks) {
             if (brick != null)
                 brick.draw(canvas);

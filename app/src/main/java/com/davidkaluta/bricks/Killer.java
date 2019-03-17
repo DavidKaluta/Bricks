@@ -68,10 +68,11 @@ public class Killer extends Brick implements Runnable {
                             && x < brick.x + brick.width
                             && y + height > brick.y
                             && y < brick.y + brick.height) {
-                        bricks.remove(brick);
+                        gv.getPM().addParticles(brick);
                         score++;
                         if(Saver.getHighScore(gv.getContext()) < score)
                             Saver.setHighScore(gv.getContext(), score);
+                        bricks.remove(brick);
                         break;
                     }
                 }
@@ -96,6 +97,10 @@ public class Killer extends Brick implements Runnable {
             else {}
             x += dx;
             y += dy;
+            ParticleManager pm = gv.getPM();
+            if(pm != null)
+                if(!pm.isEmpty())
+                pm.run();
             if(bricks.isEmpty())
                 gv.spawnBricks(bricks);
             gv.setBricks(bricks);
